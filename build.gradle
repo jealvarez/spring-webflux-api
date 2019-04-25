@@ -1,0 +1,51 @@
+plugins {
+  id "io.spring.dependency-management" version "1.0.7.RELEASE"
+  id "io.freefair.lombok" version "3.1.4"
+  id 'org.springframework.boot' version '2.1.3.RELEASE'
+  id 'net.ltgt.apt' version '0.8'
+  id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.spring.webflux'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+  mavenCentral()
+  maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
+
+dependencyManagement {
+  imports {
+    mavenBom 'org.springframework.boot:spring-boot-starter-parent:2.1.2.RELEASE'
+  }
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  implementation 'org.flywaydb:flyway-core'
+  implementation 'org.projectlombok:lombok'
+  implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.0.0'
+  implementation 'org.mapstruct:mapstruct:1.3.0.Final'
+  implementation 'io.vavr:vavr:0.9.3'
+  implementation 'io.springfox:springfox-swagger2:3.0.0-SNAPSHOT'
+  implementation 'io.springfox:springfox-swagger-ui:3.0.0-SNAPSHOT'
+  implementation 'io.springfox:springfox-spring-webflux:3.0.0-SNAPSHOT'
+  implementation 'ch.qos.logback:logback-classic:1.2.3'
+  implementation 'org.slf4j:log4j-over-slf4j'
+  implementation 'org.slf4j:jcl-over-slf4j:1.7.26'
+  implementation 'org.slf4j:jul-to-slf4j:1.7.26'
+  implementation 'org.slf4j:slf4j-api:1.7.26'
+  implementation 'org.apache.commons:commons-lang3:3.8.1'
+
+  runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+  runtimeOnly 'org.postgresql:postgresql'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'io.projectreactor:reactor-test'
+  testImplementation 'org.springframework.security:spring-security-test'
+
+  annotationProcessor 'org.mapstruct:mapstruct-processor:1.3.0.Final'
+}

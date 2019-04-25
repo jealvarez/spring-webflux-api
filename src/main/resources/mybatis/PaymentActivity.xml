@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.example.payments.repositories.PaymentActivity">
+
+    <select id="findAll" resultType="com.spring.example.payments.models.PaymentActivity">
+        SELECT *
+        FROM payments.payment_activity
+    </select>
+
+    <insert id="insert" parameterType="com.spring.example.payments.models.PaymentActivity">
+        <selectKey keyColumn="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO payments.payment_activity(created_at, invoice_number, currency, amount, type)
+        VALUES (CURRENT_TIMESTAMP, #{invoiceNumber}, #{currency}, #{amount}, #{paymentInstrumentType}::payments.payment_instrument_type)
+    </insert>
+
+</mapper>
